@@ -1,11 +1,10 @@
+import { changeColour } from './test.ts';
 import { Sum } from './Sum';
-import './image-viewer';
 
-let sum = new Sum(10, 10);
+changeColour();
 
-console.log(sum.sum());
-
-sum.setA(12);
-sum.setB(12);
+const sum = new Sum(100, 1000);
 
 console.log(sum.sum());
+
+
