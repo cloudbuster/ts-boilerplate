@@ -22,8 +22,8 @@ module.exports = {
                     use: 'css-loader'
                 }),
                 test: /\.css$/
-            },
-            {
+            }//,
+            /*{
                 enforce: 'pre',
                 test: /\.js$/,
                 loader: "source-map-loader"
@@ -32,7 +32,7 @@ module.exports = {
                 enforce: 'pre',
                 test: /\.tsx?$/,
                 use: "source-map-loader"
-            }
+            }*/
         ]
     },
     resolve: {
@@ -40,6 +40,6 @@ module.exports = {
     },
     plugins: [
         new ExtractTextPlugin('style.css')
-    ],
-    devtool: 'inline-source-map',
+    ]/*,
+    devtool: 'inline-source-map', */
 };
