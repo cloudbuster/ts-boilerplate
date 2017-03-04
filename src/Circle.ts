@@ -17,7 +17,7 @@ export class Circle implements Shape {
     }
 
     randomInit(canvasHeight: number, canvasWidth: number, layers: number): void {
-        var min: number = 0;
+        const min: number = 0;
         this.x = Math.round(Math.random() * (canvasWidth - min) + min);
         this.y = Math.round(Math.random() * (canvasHeight - min) + min);
         this.xSpeed = Math.round(Math.random() * (layers - min) + min) + 1;

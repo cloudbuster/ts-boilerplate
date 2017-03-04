@@ -10,8 +10,8 @@ export class InitCanvas {
         this.canvas.style.zIndex = '0';
         this.canvas.style.position = 'absolute';
         this.canvas.style.border = '2px solid black';
-        this.canvas.style.width = `${canvasWidth * 2}px`;
-        this.canvas.style.height = `${canvasHeight * 2}px`;
+        this.canvas.style.width = `${canvasWidth * 1}px`;
+        this.canvas.style.height = `${canvasHeight * 1}px`;
         this.canvas.style.backgroundColor = 'black';
     }
 
