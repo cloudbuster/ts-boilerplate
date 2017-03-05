@@ -22,7 +22,7 @@ export class Circle implements Shape {
         this.y = Math.round(Math.random() * (canvasHeight - min) + min);
         this.xSpeed = Math.round(Math.random() * (layers - min) + min) + 1;
         this.ySpeed = Math.round(Math.random() * (layers - min) + min);
-        this.radius = (this.xSpeed * 1.05) - 1;
+        this.radius = (this.xSpeed/3);
     }
 
     update(canvasHeight: number, canvasWidth: number): void {

@@ -1,3 +1,4 @@
+
 import { InitCanvas } from './InitCanvas';
 import { Circle } from './Circle';
 import { Text } from './Text';
@@ -9,13 +10,13 @@ const canvasWidth = myCanvas.getCanvasWidth();
 const text: Text = new Text(canvasWidth, 120, 'orange');
 
 const circles = new Array();
-for (var i = 0; i < 50; i += 1) {
-    circles.push(new Circle(10, 10, 10, 'orange'));
+for (var i = 0; i < 25; i += 1) {
+    circles.push(new Circle(10, 10, 10, 'grey'));
     circles[i].randomInit(myCanvas.getCanvasHeight(), myCanvas.getCanvasWidth(), 10);
 }
 
 var draw = (): void => {
-    myCanvas.context.fillStyle = 'black';
+    myCanvas.context.fillStyle = '#222222';
     myCanvas.context.fillRect(0, 0, canvasWidth, canvasHeight);
 
     requestAnimationFrame(draw);

@@ -1,3 +1,4 @@
+import '../css/textscroller.css';
 import { Shape } from './Shape';
 
 export class Text implements Shape {
@@ -12,20 +13,25 @@ export class Text implements Shape {
         this.x = x;
         this.y = y;
         this.color = color;
-        this.xSpeed = 8;
+        this.xSpeed = 2;
     }
 
     update(canvasHeight: number, canvasWidth: number): void {
         this.x -= this.xSpeed;
-        if (this.x < -4500) this.x = canvasWidth; //-1 * ();
-        this.y = (Math.sin(this.x/360)*(canvasHeight/4)) + (canvasHeight / 2);
+        if (this.x < -5500) this.x = canvasWidth; //-1 * ();
+        this.y = canvasHeight - 25; // (Math.sin(this.x/90)*(canvasHeight/4)) + (canvasHeight / 2);
     }
 
 
     draw(context: CanvasRenderingContext2D): void {
         context.save();
-        context.font = '72px serif';
-        context.fillStyle = 'blue';
+        context.font = "72px Molle, cursive" //'72px serif'
+        const lingrad = context.createLinearGradient(0, 402, 0, 475);
+        lingrad.addColorStop(0, '#555');
+        lingrad.addColorStop(0.5, '#aaa');
+        // lingrad.addColorStop(0.5, '#66CC00');
+        lingrad.addColorStop(1, '#fff');
+        context.fillStyle = lingrad;
         context.fillText('My content is here and this should be a very long text to create a text scroller. I wonder if this looks like a text scroller - I bet it does and will look cool.', this.x, this.y);
         context.restore();
     }
