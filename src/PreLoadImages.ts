@@ -1,12 +1,12 @@
 class PreLoadImages {
-
-    images: {};
+    images = <any>{};
     loadedImages: number;
     numberOfImages: number;
 
     constructor() {
         this.loadedImages = 0;
         this.numberOfImages = 0;
+        this.images = <any>{};
     }
 
     getNumberOfSources(sources: {}): void {
@@ -16,21 +16,22 @@ class PreLoadImages {
         }
     }
 
-    /**
-     * tässä tarkoituksena on ladata jokainen image tauluun. 
-     *  
-     */
-
+    // ekana injektoidaan objekti
     loadImages(sources: {}): void {
-        // for (var src in sources) {
-        //     images[src] = new Image();
-        //     images[src].onload = function () {
-        //         if (++this.loadedImages >= this.numImages) {
-        //             this.callback(this.images);
-        //         }
-        //     };
-        //     images[src].src = sources[src];
-        // }
+        // src on indeksi, sourcesin läpi iteroidaan
+        for (var src in sources) {
+            // jokaisella iteroinnilla laitetaan uusi 
+            // key, joka on src mutta onko se numero?
+            // key pariksi laitetaan uusi image
+            this.images[src] = new Image();
+            // sitten se sama ladattaessa
+            this.images[src].onload = function () {
+                if (++this.loadedImages >= this.numImages) {
+                    this.callback(this.images);
+                }
+            };
+            this.images[src].src = sources[src];
+        }
     }
 
 
@@ -42,7 +43,6 @@ class PreLoadImages {
 
 let preLoad: PreLoadImages = new PreLoadImages();
 
-
 var sources = <any>{
     darthVader: 'http://www.html5canvastutorials.com/demos/assets/darth-vader.jpg',
     yoda: 'http://www.html5canvastutorials.com/demos/assets/yoda.jpg',
@@ -50,16 +50,10 @@ var sources = <any>{
     c64: 'https://upload.wikimedia.org/wikipedia/commons/7/7f/Commodore64.png'
 };
 
-preLoad.getNumberOfSources(sources);
-preLoad.printNumberOfSources();
+sources.okay = 'https://upload.wikimedia.org/wikipedia/commons/7/7f/Commodore64.png';
 
-console.log(sources.darthVader);
-sources.jaahas = 'Ok';
 
-console.log(sources.jaahas);
 
-preLoad.getNumberOfSources(sources);
-preLoad.printNumberOfSources();
 
 
 /*
