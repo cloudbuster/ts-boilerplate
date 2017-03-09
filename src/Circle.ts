@@ -1,4 +1,4 @@
-import { Shape } from './Shape';
+import {Shape} from './Shape';
 
 export class Circle implements Shape {
     x: number;
@@ -14,6 +14,7 @@ export class Circle implements Shape {
         this.y = y;
         this.radius = radius;
         this.color = color;
+        var i = 100;
     }
 
     randomInit(canvasHeight: number, canvasWidth: number, layers: number): void {
@@ -22,7 +23,7 @@ export class Circle implements Shape {
         this.y = Math.round(Math.random() * (canvasHeight - min) + min);
         this.xSpeed = Math.round(Math.random() * (layers - min) + min) + 1;
         this.ySpeed = Math.round(Math.random() * (layers - min) + min);
-        this.radius = (this.xSpeed/3);
+        this.radius = (this.xSpeed / 3);
     }
 
     update(canvasHeight: number, canvasWidth: number): void {
