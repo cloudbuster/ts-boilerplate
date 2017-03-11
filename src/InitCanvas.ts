@@ -13,6 +13,12 @@ export class InitCanvas {
         this.canvas.style.width = `${canvasWidth * 1}px`;
         this.canvas.style.height = `${canvasHeight * 1}px`;
         this.canvas.style.backgroundColor = 'black';
+        this.canvas.style.borderRadius = '50px';
+        this.canvas.style.position = 'absolute';
+        this.canvas.style.top = '50%';
+        this.canvas.style.left = '50%';
+        this.canvas.style.marginLeft = `-${canvasWidth / 2}px`;
+        this.canvas.style.marginTop = `-${canvasHeight / 2}px`;
     }
 
     getCanvasHeight():number {
