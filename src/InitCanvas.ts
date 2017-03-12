@@ -29,6 +29,18 @@ export class InitCanvas {
         return this.canvas.width;
     }
 
+
+	public get $canvas(): HTMLCanvasElement {
+		return this.canvas;
+	}
+
+	public set $canvas(value: HTMLCanvasElement) {
+		this.canvas = value;
+	}
+    
+
+    
+
     createCanvas() {
         this.context = <CanvasRenderingContext2D>this.canvas.getContext('2d');
         document.body.appendChild(this.canvas);
