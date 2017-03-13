@@ -1,11 +1,12 @@
 import {InitCanvas} from "./InitCanvas";
 import { Text } from './Text';
 
-const myCanvas: InitCanvas = new InitCanvas('animationCanvas', 640, 480);
+const myCanvas: InitCanvas = new InitCanvas('animationCanvas', 800, 200);
 const canvasHeight = myCanvas.getCanvasHeight();
 const canvasWidth = myCanvas.getCanvasWidth();
 
-const text: Text = new Text(myCanvas.context, -50, (canvasHeight/2 + 30), 'white', 'Yeah...  ', 60);
+const hello: string = '..................At least the wrapping works even if there is some twitching'
+const text: Text = new Text(myCanvas.context, -50, 50, 'orange', 'wraps around nicely... ', 40);
 
 var draw = (): void => {
     myCanvas.context.fillStyle = '#222222';
@@ -13,6 +14,7 @@ var draw = (): void => {
 
     requestAnimationFrame(draw);
 
+    // text.update();
     text.update();
     text.draw(myCanvas.context)
 

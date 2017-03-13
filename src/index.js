@@ -2,7 +2,7 @@
  * Circular iteration algorithm
  */
 
-var scrolltext = "Hello............................ ";
+var scrolltext = "Okay this is okay. At least the wrapping works .............. ";
 var scrolltextArray = scrolltext.split('');
 var arrayLength = scrolltextArray.length;
 var scrolltextWidth = 20;

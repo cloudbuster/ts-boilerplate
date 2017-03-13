@@ -2,6 +2,11 @@ import '../css/textscroller.css';
 
 export class Text {
     // Placement
+    xArr: Array<number> = [0];
+    yArr: Array<number> = [0];
+    sinArr: Array<number> = [0];
+    phases: Array<number> = [0];
+    iterator: number = 0;
     x: number;
     y: number;
     xSpeed: number;
@@ -17,8 +22,11 @@ export class Text {
     traverseString: string;
     traversePosition: number;
     ticker: number;
+    traverseArray: Array<string> = [''];
 
     constructor(context: CanvasRenderingContext2D, x: number, y: number, color: string, text: string, textWidth: number) {
+
+
         this.x = x;
         this.y = y;
         this.color = color;
@@ -37,47 +45,61 @@ export class Text {
         this.willTraverse = true;
         this.traversePosition = 0;
         this.ticker = 0;
+
     }
 
     update(): void {
 
         if (this.willTraverse) {
 
+            let iterator: number;
             // Nullify positions
-            this.ticker = 0;
-            this.x += this.fontWidth;
-            this.traversePosition += 1;
+            this.ticker = 0; // skrollaus aloitetaan alusta
+
+            this.traversePosition += 1; // otetaan uusi aloituskohta stringille
             if (this.traversePosition == this.arrayLength) {
                 this.traversePosition = 0;
             }
 
             // Return traversed text
             this.traverseString = this.textArray[this.traversePosition];
-            for (let j = 1; j < this.textWidth; j++) {
-                this.traverseString += this.textArray[(this.traversePosition + j) % this.arrayLength];
+            for (let i = 1; i < this.textWidth; i++) {
+                this.traverseString += this.textArray[(this.traversePosition + i) % this.arrayLength];
+                this.xArr[i] = (i * this.fontWidth) - 50; // levitetään ruudun leveydelle
+                let myMath: number;
+                myMath = Math.sin(this.iterator + this.phases[i]);
             }
             this.willTraverse = false;
+            this.traverseArray = this.traverseString.split('');
         }
 
-        // Update xpos for drawing the string
+        for (var i: number = 0; i < this.textWidth; i += 1) {
+            this.xArr[i] -= this.xSpeed;
+            this.iterator += .0020;
+            this.yArr[i] = 117 + (Math.sin(this.iterator + this.xArr[i] / 90) * 50);
+        }
+
+        this.iterator += .0020;
+
         this.ticker += this.xSpeed;
-        this.x -= this.xSpeed;
+
+
 
         // Ticker checks for fontWidth (ticker starts from 0 and font from 1 so 29, 30)  
-        if (this.ticker >= this.fontWidth-1) {
+        if (this.ticker >= this.fontWidth - 1) {
             this.willTraverse = true;
         }
-
     }
 
 
     draw(context: CanvasRenderingContext2D): void {
-        context.save();
-        context.font = '60px Ubuntu Mono, monospace';
-        context.fillStyle = this.color;
-        context.fillText(this.traverseString, this.x, this.y);
-        context.restore();
+        for (let i: number = 0; i < this.textWidth; i += 1) {
+            context.save();
+            context.font = '60px Ubuntu Mono, monospace';
+            context.fillStyle = this.color;
+            context.fillText(this.traverseArray[i], this.xArr[i], this.yArr[i]);
+            context.restore();
+        }
     }
 
 }
-
